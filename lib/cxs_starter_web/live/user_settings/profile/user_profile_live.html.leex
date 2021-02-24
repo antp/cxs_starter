@@ -1,0 +1,91 @@
+<!-- Description list with inline editing -->
+<div>
+  <div id="user-settings"
+    class="px-4 divide-y divide-gray-200">
+    <div class="space-y-1">
+      <p class="max-w-2xl text-sm text-center text-red-700">
+        This information will be displayed publicly so be careful what you share.
+      </p>
+    </div>
+    <div class="mt-6">
+      <dl class="divide-y divide-gray-200">
+        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+          <dt class="text-sm font-medium text-gray-500">
+            Name
+          </dt>
+          <dd class="flex mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <span class="flex-grow"><%= @current_user.name %></span>
+            <span class="flex-shrink-0 ml-4">
+              <%= live_patch "Update",
+              id: "update-name",
+                to: Routes.user_profile_path(@socket, :name_edit),
+                class: "font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" %>
+            </span>
+          </dd>
+        </div>
+
+        <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
+          <dt class="text-sm font-medium text-gray-500">
+            Email
+          </dt>
+          <dd class="flex mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <span class="flex-grow"><%= @current_user.email %></span>
+            <span class="flex-shrink-0 ml-4">
+                <%= live_patch "Update",
+                id: "update-email",
+                to: Routes.user_profile_path(@socket, :email_edit),
+                class: "font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" %>
+            </span>
+            </span>
+          </dd>
+        </div>
+
+          <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
+          <dt class="text-sm font-medium text-gray-500">
+            Password
+          </dt>
+          <dd class="flex mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            <span class="flex-grow">XXXX-XXXX</span>
+            <span class="flex-shrink-0 ml-4">
+              <%= live_patch "Update",
+                id: "update-password",
+                to: Routes.user_profile_path(@socket, :password_edit),
+                class: "font-medium text-purple-600 bg-white rounded-md hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500" %>
+            </span>
+          </dd>
+        </div>
+      </dl>
+    </div>
+</div>
+
+<div class="mt-10 border border-red-300 rounded-md">
+  <div class="mt-1 text-sm text-gray-900">
+    <ul class="divide-y divide-gray-200">
+      <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+        <div class="flex items-center flex-1 w-0">
+          <div class="flex-1 w-0 ml-2">
+            <p class="font-semibold truncate">
+              Delete my account
+            </p>
+            <p class="text-sm font-normal text-gray-500">
+            Once you delete your account, there is no going back. Please be certain.
+            </p>
+          </div>
+        </div>
+        <div class="flex-shrink-0 ml-4">
+         <%= live_patch "Delete this account",
+                id: "delete-account",
+                to: Routes.user_profile_path(@socket, :delete),
+                class: "px-4 py-2 font-medium text-red-600 bg-white border border-gray-200 rounded-md hover:text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<%= if @live_action in [:name_edit, :email_edit, :password_edit, :delete] do %>
+  <%= live_modal @socket, @modal,
+    id: @live_action,
+    current_user: @current_user,
+    return_to: Routes.user_profile_path(@socket, :profile) %>
+<% end %>

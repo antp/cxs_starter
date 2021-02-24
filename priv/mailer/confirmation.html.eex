@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
+    <!--[if mso]>
+    <xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml>
+    <style>
+      td,th,div,p,a,h1,h2,h3,h4,h5,h6 {font-family: "Segoe UI", sans-serif; mso-line-height-rule: exactly;}
+    </style>
+  <![endif]-->
+    <title>Confirm your email</title>
+    <style>
+      .hover-bg-blue-600:hover {
+        background-color: #2563eb !important;
+      }
+
+      .hover-underline:hover {
+        text-decoration: underline !important;
+      }
+
+      @media (max-width: 600px) {
+        .sm-h-32 {
+          height: 32px !important;
+        }
+
+        .sm-px-24 {
+          padding-left: 24px !important;
+          padding-right: 24px !important;
+        }
+
+        .sm-pb-12 {
+          padding-bottom: 12px !important;
+        }
+
+        .sm-w-full {
+          width: 100% !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body style="margin: 0; padding: 0; width: 100%; word-break: break-word; -webkit-font-smoothing: antialiased; background-color: #eff6ff; height: 100%;">
+    <div role="article" aria-roledescription="email" aria-label="Confirm your email" lang="en">
+      <table style="font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif; height: 100%; width: 100%;" cellpadding="0" cellspacing="0" role="presentation">
+        <tr>
+          <td align="center" style="padding-top: 24px; padding-bottom: 24px; vertical-align: middle;" valign="middle">
+            <table class="sm-w-full" style="width: 600px;" cellpadding="0" cellspacing="0" role="presentation">
+              <tr>
+                <td class="sm-pb-12" style="padding-bottom: 24px; text-align: center;">
+                  <h1 style="font-weight: 600; font-size: 24px; color: #000000;">Confirm your email</h1>
+                </td>
+              </tr>
+              <tr>
+                <td align="center" class="sm-px-24">
+                  <table class="sm-w-full" style="width: 75%;" cellpadding="0" cellspacing="0" role="presentation">
+                    <tr>
+                      <td class="sm-px-24" style="background-color: #ffffff; border-top-left-radius: 8px; border-top-right-radius: 8px; padding: 10px 20px; text-align: center;">
+                        <p style="font-weight: 600; font-size: 18px; margin: 0;">Hello <%= @name %>,</p>
+                        <p style="font-size: 16px; text-align: left; color: #374151;">Welcome to Cxs Starter</p>
+                        <p style="font-size: 16px; text-align: left; color: #374151;">Follow this link to confirm your email address:</p>
+                        <div class="sm-h-32" style="line-height: 10px;">&zwnj;</div>
+                        <a href="<%= @confirm_url %>" class="hover-bg-blue-600" style="background-color: #3b82f6; border-radius: 4px; display: inline-block; font-weight: 600; font-size: 14px; line-height: 1; padding: 10px 14px; color: #ffffff; text-transform: uppercase; text-decoration: none;"
+                        target="_blank">
+                          <!--[if mso]><i style="letter-spacing: 24px; mso-font-width: -100%; mso-text-raise: 26pt;">&nbsp;</i><![endif]-->
+                          <span style="mso-text-raise: 13pt;">Confirm your email &rarr;</span>
+                          <!--[if mso]><i style="letter-spacing: 24px; mso-font-width: -100%;">&nbsp;</i><![endif]-->
+                        </a>
+                        <p style="font-size: 12px; padding-top: 8px; text-align: left; color: #4b5563;">
+                          If you did not sign up for this account you can ignore this email. The account will
+                          autmatically be deleted after 3 days.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="background-color: #d1d5db; height: 2px;"></td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; padding-left: 14px; padding-right: 14px; padding-top: 8px; text-align: center; color: #4b5563;">
+                        <hr style="background-color: #3b82f6; border-width: 0px; height: 1px; color: #3b82f6;">
+                        <p style="margin: 4px 0 0; font-style: italic;">This email was to to you because you have an account on <a href="<%= @base_url %>">Cxs Starter</a>.</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; color: #4b5563;">
+                        <p style="cursor: default; text-align: center;">Have questions?<br>
+                          please email
+                          <a href="mailto:<%= @support_email %>" class="hover-underline" style="color: #3b82f6; text-decoration: none;">support</a>
+                          and let us know.
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="font-size: 12px; color: #4b5563;">
+                        <p style="margin: 4px 0 0; text-align: center; font-style: italic;">&copy; Cxs Starter 2021</p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+
+</html>

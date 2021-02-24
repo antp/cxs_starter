@@ -1,0 +1,7 @@
+<main role="main" class="container">
+  <%= render "_flash.html", assigns %>
+
+  <%= @inner_content %>
+
+
+</main>

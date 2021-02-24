@@ -1,0 +1,138 @@
+<main role="main">
+ <%= render "_live_flash.html", assigns %>
+
+<div id="user-profile"
+  phx-hook="UserProfile"
+  class="flex overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg"
+  x-data="{menuOpen: false}">
+
+  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+  <div class="md:hidden"
+    x-show="menuOpen">
+    <div class="fixed inset-0 z-40 flex">
+      <!--
+        Off-canvas menu overlay, show/hide based on off-canvas menu state.
+
+        Entering: "transition-opacity ease-linear duration-300"
+          From: "opacity-0"
+          To: "opacity-100"
+        Leaving: "transition-opacity ease-linear duration-300"
+          From: "opacity-100"
+          To: "opacity-0"
+      -->
+      <div class="fixed inset-0" aria-hidden="true"
+        x-show="menuOpen"
+        x-on:click="menuOpen = false"
+        x-transition:enter="transition-opacity ease-linear duration-300"
+        x-transition:enter-start="opacity-0"
+        x-transition:enter-end="opacity-100"
+        x-transition:leave="transition-opacity ease-linear duration-300"
+        x-transition:leave-start="opacity-100"
+        x-transition:leave-end="opacity-0"
+        x-cloak>
+        <div class="absolute inset-0 bg-gray-600 opacity-75"></div>
+      </div>
+      <!--
+        Off-canvas menu, show/hide based on off-canvas menu state.
+
+        Entering: "transition ease-in-out duration-300 transform"
+          From: "-translate-x-full"
+          To: "translate-x-0"
+        Leaving: "transition ease-in-out duration-300 transform"
+          From: "translate-x-0"
+          To: "-translate-x-full"
+      -->
+      <div class="relative flex flex-col flex-1 w-full max-w-xs pt-5 pb-4 bg-white"
+        x-show="menuOpen"
+        x-transition:enter="transition transform ease-in-out duration-300"
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition transform ease-in-out duration-300"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        x-cloak>
+        <div class="absolute top-0 right-0 p-1 -mr-14">
+          <button class="flex items-center justify-center w-12 h-12 rounded-full focus:outline-none focus:bg-gray-600"
+          x-on:click="menuOpen = !menuOpen">
+            <!-- Heroicon name: outline/x -->
+            <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+            <span class="sr-only">Close sidebar</span>
+          </button>
+        </div>
+        <div class="flex-1 h-0 mt-5 overflow-y-auto">
+          <nav class="flex flex-col h-full">
+            <div class="space-y-1">
+              <!-- Current: "bg-purple-50 border-purple-600 text-purple-600", Default: "text-gray-600 hover:bg-gray-50 hover:text-gray-900" -->
+              <%= link to: Routes.user_profile_path(@socket, :profile), class: "flex items-center px-3 py-2 text-sm font-medium text-purple-600 border-l-4 border-purple-600 bg-purple-50 group", role: "menuitem" do %>
+                <svg class="w-6 h-6 mr-3 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+                </svg>Profile
+              <% end %>
+            </div>
+          </nav>
+        </div>
+      </div>
+      <div class="flex-shrink-0 w-14" aria-hidden="true">
+        <!-- Dummy element to force sidebar to shrink to fit close icon -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Static sidebar for desktop -->
+  <div class="hidden md:flex md:flex-shrink-0">
+    <div class="flex flex-col w-64">
+      <!-- Sidebar component, swap this element with another sidebar if you like -->
+      <nav class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto border-r border-gray-200 bg-gray-50">
+        <div class="flex flex-col flex-grow mt-5">
+          <div class="flex-1 space-y-1">
+            <!-- Current: "bg-purple-50 border-purple-600 text-purple-600", Default: "border-transparent text-gray-600 hover:text-gray-900 hover:bg-gray-50" -->
+            <%= link to: Routes.user_profile_path(@socket, :profile), class: "flex items-center px-3 py-2 text-sm font-medium text-purple-600 border-l-4 border-purple-600 bg-purple-50 group", role: "menuitem" do %>
+              <svg class="w-6 h-6 mr-3 text-purple-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
+              </svg>Profile
+            <% end %>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Content area -->
+  <div class="flex flex-col flex-1">
+    <div class="w-full max-w-4xl mx-auto md:px-8 xl:px-0">
+      <div class="z-10 flex flex-shrink-0 h-16 bg-white border-b border-purple-500">
+        <button class="px-4 text-gray-500 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-purple-500 md:hidden"
+          x-on:click="menuOpen = !menuOpen">
+
+          <span class="sr-only">Open sidebar</span>
+          <!-- Heroicon name: outline/menu-alt-2 -->
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
+          </svg>
+        </button>
+        <div class="w-full px-4 pt-6 sm:px-6 md:px-0">
+          <h1 class="text-3xl font-extrabold text-center text-gray-900"><%= @title%></h1>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-1 overflow-y-auto focus:outline-none" tabindex="0">
+      <div class="relative max-w-4xl mx-auto md:px-8 xl:px-0">
+        <div class="pt-10 pb-16">
+          <div class="px-4 sm:px-6 md:px-0">
+            <div class="py-6">
+
+              <%= @inner_content %>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+</main>

@@ -1,0 +1,18 @@
+  Hello <%= @name %>
+
+    Welcome to Cxs Starter
+
+    Follow this link to confirm your email address:
+
+    <%= @confirm_url %>
+
+    If you did not sign up for this account you can ignore this email. The account will
+    autmatically be deleted after 3 days.
+
+    if you have any questions, please email
+    <%= @support_email %> and let us know.
+
+    Regards,
+    Cxs Starter
+
+    <%= @base_url %>

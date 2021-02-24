@@ -1,0 +1,2 @@
+<%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %>
+<%= link "Sign in", to: Routes.user_session_path(@conn, :new), class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %>
