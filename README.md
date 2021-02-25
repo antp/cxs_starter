@@ -31,6 +31,7 @@ It has been refactored to provide a liveview interface to the settings page.
 * Rename the directories to my_app and my_app_web
 * Rename CxsStarter => MyApp
 * Rename cxs_starter => my_app
+* Rename cxs_starter_web => my_app_web
 * Update your database settings
   
 ## Screen capture in tests
